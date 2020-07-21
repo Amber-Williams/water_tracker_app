@@ -1,0 +1,80 @@
+service: water-tracking-app2098234
+
+frameworkVersion: ">=1.1.0 <2.0.0"
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  environment:
+    DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
+
+functions:
+  create_user:
+    handler: api/create_user.create
+    events:
+      - http:
+          path: user
+          method: post
+          cors: true
+
+  get_user:
+    handler: api/get_user.get
+    events:
+      - http:
+          path: user/{id}
+          method: get
+          cors: true
+
+  list_users:
+    handler: api/list_users.list
+    events:
+      - http:
+          path: posts
+          method: get
+          cors: true
+
+  create_post:
+    handler: api/create_post.create
+    events:
+      - http:
+          path: post
+          method: post
+          cors: true
+
+  get_post:
+    handler: api/get_post.get
+    events:
+      - http:
+          path: post/{id}/{date}
+          method: get
+          cors: true
+
+resources:
+  Resources:
+    WaterLevelDynamoDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Delete 
+      # DeletionPolicy: Retain  # TTD change this when in production
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: id
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:provider.environment.DYNAMODB_TABLE}

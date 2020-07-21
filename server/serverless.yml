@@ -39,6 +39,14 @@ functions:
           method: get
           cors: true
 
+  delete_user:
+    handler: api/delete_user.delete
+    events:
+      - http:
+          path: user/{id}
+          method: delete
+          cors: true
+
   list_users:
     handler: api/list_users.list
     events:

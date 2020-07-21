@@ -148,7 +148,7 @@ h3 {
     position: relative;
     left: calc(50% - 56px);
   }
-  
+
   #water {
     background-color: var(--water-color);
     width: 112px;

@@ -1,6 +1,6 @@
 'use strict';
 
-const AWS = require('aws-sdk'); // eslint-disable-line import/no-extraneous-dependencies
+const AWS = require('aws-sdk');  
 const moment = require('moment');
 
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
@@ -17,7 +17,7 @@ module.exports.get = (event, context, callback) => {
   dynamoDb.get(params, (error, result) => {
     // handle potential errors
     if (error) {
-      console.error(error);
+      console.error(error); // eslint-disable-line no-console
       callback(null, {
         statusCode: error.statusCode || 501,
         headers: { 
@@ -43,6 +43,8 @@ module.exports.get = (event, context, callback) => {
       dated_post = dated_post.sort((a,b) => {
         return b.date - a.date;
       })
+      dated_post = dated_post[0];
+    } else if (dated_post.length === 1) { 
       dated_post = dated_post[0];
     }
 

@@ -1,5 +1,5 @@
 'use strict';
-const AWS = require('aws-sdk'); // eslint-disable-line import/no-extraneous-dependencies
+const AWS = require('aws-sdk');  
 
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
@@ -8,7 +8,7 @@ module.exports.create = (event, context, callback) => {
   const data = JSON.parse(event.body);
   if (typeof data.waterLevel !== 'number' ) {
     const error = 'Couldn\'t create the water post. Issue with input type.'
-    console.error(`Validation Failed: ${error}`);
+    console.error(`Validation Failed: ${error}`); // eslint-disable-line no-console
     callback(null, {
       statusCode: 400,
       headers: { 
@@ -44,7 +44,7 @@ module.exports.create = (event, context, callback) => {
   dynamoDb.update(params, (error, result) => {
     // handle potential errors
     if (error) {
-      console.error(error);
+      console.error(error); // eslint-disable-line no-console
       callback(null, {
         statusCode: error.statusCode || 501,
         headers: { 

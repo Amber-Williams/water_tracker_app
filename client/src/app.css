@@ -43,6 +43,24 @@ h3 {
   color: var(--secondary-color);
 }
 
+@media screen and (max-width: 768px){
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  h4 {
+    font-size: 0.9rem;
+  }
+}
+
 /**
  * App
  */
@@ -70,6 +88,12 @@ h3 {
   padding: 3rem;
 }
 
+@media screen and (max-width: 768px) {
+  .WaterScreen {
+    padding: 1rem;
+  }
+}
+
 .pencil {
   background: none;
   border: none;
@@ -77,14 +101,21 @@ h3 {
 }
 
 .WaterButtons--MinusPlus img {
-  width: 150px;
+  width: 100px;
 }
 
 @media screen and (max-width: 768px){
   .WaterButtons--MinusPlus img {
-    width: 100px;
+    width: 60px;
   }
 }
+
+@media screen and (max-width: 480px){
+  .WaterButtons--MinusPlus img {
+    width: 40px;
+  }
+}
+
 
 /**
  * WaterGraphic
@@ -94,7 +125,7 @@ h3 {
   padding: 2rem;
 }
 
-.WaterGraphic img{
+#water-man {
   height: 400px;
   width: 179px;
   position: relative;
@@ -107,6 +138,22 @@ h3 {
   position: relative;
   top: 400px;
   left: calc(50% - 89px);
+}
+
+@media screen and (max-width: 768px) {
+  #water-man {
+    height: 250px;
+    width: 112px;
+    position: relative;
+    left: calc(50% - 56px)
+  }
+  #water {
+    background-color: var(--water-color);
+    width: 112px;
+    position: relative;
+    top: 250px;
+    left: calc(50% - 56px);
+  }
 }
 
 /**

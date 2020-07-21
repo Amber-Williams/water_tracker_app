@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import ManDrinking from './../../images/man-drinking.png'
+import PropTypes from 'prop-types';
+import ManDrinking from './../../images/man-drinking.png';
 
-const WaterGraphic = ({waterLevel}) => {
+const WaterGraphic = ({ waterLevel }) => {
   const [height, setHeight] = useState(0)
 
   useEffect(() => {
@@ -25,5 +26,10 @@ const WaterGraphic = ({waterLevel}) => {
       <img id="water-man" src={ManDrinking}/>
     </div>
   )
-}
+};
+
+WaterGraphic.propTypes = {
+  waterLevel: PropTypes.number,
+};
+
 export default WaterGraphic;

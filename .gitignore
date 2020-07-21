@@ -1,11 +1,13 @@
-client/node_modules/
 client/.cache/
 client/dist/
 client/.env
 
-server/node_modules/
+
 server/.serverless/
 server/.env
 
 .DS_store
 
+node_modules/
+.cache/
+dist/

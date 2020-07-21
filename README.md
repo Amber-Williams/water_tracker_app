@@ -3,7 +3,7 @@ A web application that helps you keep track of how much water you drank per day.
 
 ## Setting up the API server
 
-1. At the root folder in your terminal run `cd server` and install node modules by running `npm intall`
+1. At the root folder in your terminal run `npm intall` then run `cd server`
 
 2. Then run the below with your AWS key information in your terminal
    `export AWS_ACCESS_KEY_ID=XXXXXXXXXXXXXXX`
@@ -23,7 +23,7 @@ A web application that helps you keep track of how much water you drank per day.
 
 ## Setting up the React app client
 
-1. At the root of the folder run `cd client` and run `npm install` to install all the node modules
+1. At the root of the folder run `npm install` to install all the node modules then run `cd client`
 
 2. Then create a `.env` file with the host address you saved above and put it into your `.env` file along with your AWS key credentials. It should look like the following 
 

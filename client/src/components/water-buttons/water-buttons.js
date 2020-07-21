@@ -1,7 +1,8 @@
 import React from 'react';
-import PlusPNG from './../../images/plus.png'
-import MinusPNG from './../../images/minus.png'
-import { createDateEntry } from './../../utilities/api.helpers'
+import PropTypes from 'prop-types';
+import PlusPNG from './../../images/plus.png';
+import MinusPNG from './../../images/minus.png';
+import { createDateEntry } from './../../utilities/api.helpers';
 
 const WaterButtons = ({username, waterLevel, setWaterLevel}) => {
 
@@ -33,5 +34,12 @@ const WaterButtons = ({username, waterLevel, setWaterLevel}) => {
       </div>
     </React.Fragment>
   )
-}
+};
+
+WaterButtons.propTypes = {
+  username: PropTypes.string,
+  waterLevel: PropTypes.number,
+  setWaterLevel: PropTypes.function,
+};
+
 export default WaterButtons;

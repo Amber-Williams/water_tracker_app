@@ -101,17 +101,20 @@ h3 {
 
 .WaterButtons--MinusPlus img {
   width: 100px;
+  height: 100px;
 }
 
 @media screen and (max-width: 768px) {
   .WaterButtons--MinusPlus img {
     width: 60px;
+    height: 60px;
   }
 }
 
 @media screen and (max-width: 480px) {
   .WaterButtons--MinusPlus img {
     width: 40px;
+    height: 40px;
   }
 }
 
@@ -145,6 +148,7 @@ h3 {
     position: relative;
     left: calc(50% - 56px);
   }
+  
   #water {
     background-color: var(--water-color);
     width: 112px;
@@ -175,18 +179,4 @@ h3 {
   z-index: 0;
   position: absolute;
   top: 0;
-}
-
-/**
- * Animations
- */
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
 }

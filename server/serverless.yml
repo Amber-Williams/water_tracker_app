@@ -2,6 +2,10 @@ service: water-tracking-app2098234
 
 frameworkVersion: ">=1.1.0 <2.0.0"
 
+package:
+  include:
+    - ./../node_modules/moment/**
+
 provider:
   name: aws
   runtime: nodejs10.x

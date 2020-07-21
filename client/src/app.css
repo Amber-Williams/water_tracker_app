@@ -13,11 +13,11 @@
  * fonts
  */
 
- html,
+html,
 body,
 div {
-  font-family: 'HelveticaNeue-Regular', 'Helvetica Neue Regular', 'Helvetica Neue',
-    Helvetica, Arial, 'Lucida Grande', sans-serif;
+  font-family: 'HelveticaNeue-Regular', 'Helvetica Neue Regular',
+    'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
   font-weight: 300;
   font-size: 14px;
   line-height: 20px;
@@ -43,6 +43,24 @@ h3 {
   color: var(--secondary-color);
 }
 
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  h4 {
+    font-size: 0.9rem;
+  }
+}
+
 /**
  * App
  */
@@ -62,12 +80,17 @@ h3 {
   height: 100vh;
 }
 
-
 /**
  * WaterScreen
  */
 .WaterScreen {
   padding: 3rem;
+}
+
+@media screen and (max-width: 768px) {
+  .WaterScreen {
+    padding: 1rem;
+  }
 }
 
 .pencil {
@@ -77,12 +100,18 @@ h3 {
 }
 
 .WaterButtons--MinusPlus img {
-  width: 150px;
+  width: 100px;
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 768px) {
   .WaterButtons--MinusPlus img {
-    width: 100px;
+    width: 60px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .WaterButtons--MinusPlus img {
+    width: 40px;
   }
 }
 
@@ -94,11 +123,11 @@ h3 {
   padding: 2rem;
 }
 
-.WaterGraphic img{
+#water-man {
   height: 400px;
   width: 179px;
   position: relative;
-  left: calc(50% - 89px)
+  left: calc(50% - 89px);
 }
 
 #water {
@@ -107,6 +136,22 @@ h3 {
   position: relative;
   top: 400px;
   left: calc(50% - 89px);
+}
+
+@media screen and (max-width: 768px) {
+  #water-man {
+    height: 250px;
+    width: 112px;
+    position: relative;
+    left: calc(50% - 56px);
+  }
+  #water {
+    background-color: var(--water-color);
+    width: 112px;
+    position: relative;
+    top: 250px;
+    left: calc(50% - 56px);
+  }
 }
 
 /**
@@ -124,12 +169,12 @@ h3 {
 }
 
 .UpdateModal--background {
-  background:rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.3);
   width: 100vw;
   height: 100vh;
   z-index: 0;
   position: absolute;
-  top:0;
+  top: 0;
 }
 
 /**

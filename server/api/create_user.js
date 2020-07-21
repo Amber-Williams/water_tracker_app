@@ -1,6 +1,6 @@
 'use strict';
 
-const AWS = require('aws-sdk');  
+const AWS = require('aws-sdk');
 
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
@@ -9,14 +9,14 @@ module.exports.create = (event, context, callback) => {
 
   const data = JSON.parse(event.body);
   if (typeof data.username !== 'string') {
-    const error = 'Couldn\'t create user. Issue with input type.'
+    const error = "Couldn't create user. Issue with input type.";
     console.error(`Validation Failed: ${error}`); // eslint-disable-line no-console
     callback(null, {
       statusCode: 400,
-      headers: { 
+      headers: {
         'Content-Type': 'text/plain',
-        'Access-Control-Allow-Origin' : '*',
-        'Access-Control-Allow-Credentials': true
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
       },
       body: error,
     });
@@ -28,7 +28,7 @@ module.exports.create = (event, context, callback) => {
     Item: {
       id: data.username,
       createdAt: timestamp,
-      waterEnteries: []
+      waterEnteries: [],
     },
   };
 
@@ -39,12 +39,12 @@ module.exports.create = (event, context, callback) => {
       console.error(error); // eslint-disable-line no-console
       callback(null, {
         statusCode: error.statusCode || 501,
-        headers: { 
+        headers: {
           'Content-Type': 'text/plain',
-          'Access-Control-Allow-Origin' : '*',
-          'Access-Control-Allow-Credentials': true
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
         },
-        body: 'Couldn\'t create user.',
+        body: "Couldn't create user.",
       });
       return;
     }
@@ -52,9 +52,9 @@ module.exports.create = (event, context, callback) => {
     // create a response
     const response = {
       statusCode: 200,
-      headers: { 
-        'Access-Control-Allow-Origin' : '*',
-        'Access-Control-Allow-Credentials': true 
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
       },
       body: JSON.stringify(params.Item),
     };

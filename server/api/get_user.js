@@ -1,6 +1,6 @@
 'use strict';
 
-const AWS = require('aws-sdk');  
+const AWS = require('aws-sdk');
 
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
@@ -19,12 +19,12 @@ module.exports.get = (event, context, callback) => {
       console.error(error); // eslint-disable-line no-console
       callback(null, {
         statusCode: error.statusCode || 501,
-        headers: { 
+        headers: {
           'Content-Type': 'text/plain',
-          'Access-Control-Allow-Origin' : '*',
-          'Access-Control-Allow-Credentials': true
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
         },
-        body: 'Couldn\'t fetch the user.',
+        body: "Couldn't fetch the user.",
       });
       return;
     }
@@ -32,9 +32,9 @@ module.exports.get = (event, context, callback) => {
     // create a response
     const response = {
       statusCode: 200,
-      headers: { 
-        'Access-Control-Allow-Origin' : '*',
-        'Access-Control-Allow-Credentials': true
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
       },
       body: JSON.stringify(result.Item),
     };

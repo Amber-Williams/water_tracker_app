@@ -11,11 +11,11 @@ const App = () => {
       setUsername(username);
     }
   }, []);
- 
+
   if (!username) {
-    return <Login setUsername={setUsername}/>;
+    return <Login setUsername={setUsername} />;
   } else {
-    return <WaterScreen username={username}/>;
+    return <WaterScreen username={username} />;
   }
-}
+};
 export default App;

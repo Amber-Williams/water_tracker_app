@@ -13,22 +13,30 @@ const Login = ({ setUsername }) => {
     event.preventDefault();
     registerUser(input, setUsername);
   };
- 
+
   return (
     <div className="login-container">
       <form className="col-6" onSubmit={handleSubmit}>
         <div className="form-group p-0">
           <label htmlFor="username">Username</label>
-          <input type="text" className="form-control" id="username" aria-describedby="usernameHelp" onChange={onInputChange}/>
+          <input
+            type="text"
+            className="form-control"
+            id="username"
+            aria-describedby="usernameHelp"
+            onChange={onInputChange}
+          />
         </div>
-        <button type="submit" className="btn btn-primary w-100">Submit</button>
+        <button type="submit" className="btn btn-primary w-100">
+          Submit
+        </button>
       </form>
     </div>
   );
 };
 
 Login.propTypes = {
-  setUsername: PropTypes.function
+  setUsername: PropTypes.function,
 };
 
 export default Login;

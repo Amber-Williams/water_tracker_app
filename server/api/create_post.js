@@ -1,20 +1,20 @@
 'use strict';
-const AWS = require('aws-sdk');  
+const AWS = require('aws-sdk');
 
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 module.exports.create = (event, context, callback) => {
   const timestamp = new Date().getTime();
   const data = JSON.parse(event.body);
-  if (typeof data.waterLevel !== 'number' ) {
-    const error = 'Couldn\'t create the water post. Issue with input type.'
+  if (typeof data.waterLevel !== 'number') {
+    const error = "Couldn't create the water post. Issue with input type.";
     console.error(`Validation Failed: ${error}`); // eslint-disable-line no-console
     callback(null, {
       statusCode: 400,
-      headers: { 
+      headers: {
         'Content-Type': 'text/plain',
-        'Access-Control-Allow-Origin' : '*',
-        'Access-Control-Allow-Credentials': true
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
       },
       body: error,
     });
@@ -30,15 +30,17 @@ module.exports.create = (event, context, callback) => {
       '#waterEnteries': 'waterEnteries',
     },
     ExpressionAttributeValues: {
-      ':waterLevel': [{ 
-          date: timestamp, 
-          level: data.waterLevel
-      }]
+      ':waterLevel': [
+        {
+          date: timestamp,
+          level: data.waterLevel,
+        },
+      ],
     },
-    UpdateExpression: 'SET #waterEnteries = list_append(#waterEnteries, :waterLevel)',
+    UpdateExpression:
+      'SET #waterEnteries = list_append(#waterEnteries, :waterLevel)',
     ReturnValues: 'ALL_NEW',
   };
-
 
   // update the user item in the database with new water entry
   dynamoDb.update(params, (error, result) => {
@@ -47,10 +49,10 @@ module.exports.create = (event, context, callback) => {
       console.error(error); // eslint-disable-line no-console
       callback(null, {
         statusCode: error.statusCode || 501,
-        headers: { 
+        headers: {
           'Content-Type': 'text/plain',
-          'Access-Control-Allow-Origin' : '*',
-          'Access-Control-Allow-Credentials': true
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
         },
         body: error,
       });
@@ -60,13 +62,12 @@ module.exports.create = (event, context, callback) => {
     // create a response
     const response = {
       statusCode: 200,
-      headers: { 
-        'Access-Control-Allow-Origin' : '*',
-        'Access-Control-Allow-Credentials': true
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
       },
       body: JSON.stringify(result.Attributes.waterEnteries),
     };
     callback(null, response);
   });
 };
-

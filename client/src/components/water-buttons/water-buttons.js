@@ -9,7 +9,7 @@ const WaterButtons = ({ username, waterLevel, setWaterLevel }) => {
     let newWaterLevel = waterLevel;
     const increment = 50;
 
-    if (is_plus && newWaterLevel < 350) {
+    if (is_plus) {
       newWaterLevel = newWaterLevel + increment;
     } else if (!is_plus && newWaterLevel > 0) {
       newWaterLevel = newWaterLevel - increment;

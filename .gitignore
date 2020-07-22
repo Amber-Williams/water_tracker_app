@@ -1,0 +1,13 @@
+client/.cache/
+client/dist/
+client/.env
+
+
+server/.serverless/
+server/.env
+
+.DS_store
+
+node_modules/
+.cache/
+dist/

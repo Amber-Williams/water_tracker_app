@@ -1,0 +1,182 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+/**
+ * variables
+ */
+:root {
+  --primary-color: #6fbeea;
+  --secondary-color: white;
+  --water-color: #1b96d3;
+}
+
+/**
+ * fonts
+ */
+
+html,
+body,
+div {
+  font-family: 'HelveticaNeue-Regular', 'Helvetica Neue Regular',
+    'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 20px;
+  word-wrap: break-word;
+  letter-spacing: 0.25px;
+}
+
+.h2 {
+  color: var(--secondary-color);
+  background: none;
+  border: none;
+}
+
+h3 {
+  font-weight: 200;
+}
+
+.text-color--primary {
+  color: var(--primary-color);
+}
+
+.text-color--secondary {
+  color: var(--secondary-color);
+}
+
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  h4 {
+    font-size: 0.9rem;
+  }
+}
+
+/**
+ * App
+ */
+#root {
+  height: 100vh;
+  width: 100vw;
+  background-color: #6fbeea;
+}
+
+/**
+ * Login
+ */
+
+.login-container {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+
+/**
+ * WaterScreen
+ */
+.WaterScreen {
+  padding: 3rem;
+}
+
+@media screen and (max-width: 768px) {
+  .WaterScreen {
+    padding: 1rem;
+  }
+}
+
+.pencil {
+  background: none;
+  border: none;
+  float: right;
+}
+
+.WaterButtons--MinusPlus img {
+  width: 100px;
+  max-height: 100px;
+}
+
+@media screen and (max-width: 768px) {
+  .WaterButtons--MinusPlus img {
+    width: 60px;
+    max-height: 60px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .WaterButtons--MinusPlus img {
+    width: 40px;
+    max-height: 40px;
+  }
+}
+
+/**
+ * WaterGraphic
+ */
+
+.WaterGraphic {
+  padding: 2rem;
+}
+
+#water-man {
+  height: 400px;
+  width: 179px;
+  position: relative;
+  left: calc(50% - 89px);
+}
+
+#water {
+  background-color: var(--water-color);
+  width: 179px;
+  position: relative;
+  top: 400px;
+  left: calc(50% - 89px);
+}
+
+@media screen and (max-width: 768px) {
+  #water-man {
+    height: 250px;
+    width: 112px;
+    position: relative;
+    left: calc(50% - 56px);
+  }
+
+  #water {
+    background-color: var(--water-color);
+    width: 112px;
+    position: relative;
+    top: 250px;
+    left: calc(50% - 56px);
+  }
+}
+
+/**
+ * UpdateModal
+ */
+.UpdateModal {
+  background: white;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 10;
+  width: 300px;
+  height: 300px;
+  left: calc(50% - 150px);
+  top: calc(50% - 150px);
+}
+
+.UpdateModal--background {
+  background: rgba(0, 0, 0, 0.3);
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  position: absolute;
+  top: 0;
+}

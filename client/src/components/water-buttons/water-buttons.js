@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PlusPNG from './../../images/plus.png';
-import MinusPNG from './../../images/minus.png';
+import ImagePlus from './../../images/plus.svg';
+import ImageMinus from './../../images/minus.svg';
 import { createDateEntry } from './../../utilities/api.helpers';
 
 const WaterButtons = ({ username, waterLevel, setWaterLevel }) => {
@@ -21,7 +21,7 @@ const WaterButtons = ({ username, waterLevel, setWaterLevel }) => {
 
   return (
     <React.Fragment>
-      <div className="w-100 d-flex justify-content-around">
+      <div className="WaterButtons w-100 d-flex justify-content-around">
         <button
           className="h2"
           onClick={() => createDateEntry(username, 150, setWaterLevel)}
@@ -42,9 +42,9 @@ const WaterButtons = ({ username, waterLevel, setWaterLevel }) => {
         </button>
       </div>
 
-      <div className="WaterButtons--MinusPlus w-100 d-flex justify-content-around">
-        <img src={MinusPNG} onClick={() => MinusPlusAction()} />
-        <img src={PlusPNG} onClick={() => MinusPlusAction(true)} />
+      <div className="WaterButtons--MinusPlus d-flex justify-content-around">
+        <img src={ImageMinus} onClick={() => MinusPlusAction()} />
+        <img src={ImagePlus} onClick={() => MinusPlusAction(true)} />
       </div>
     </React.Fragment>
   );
@@ -53,7 +53,7 @@ const WaterButtons = ({ username, waterLevel, setWaterLevel }) => {
 WaterButtons.propTypes = {
   username: PropTypes.string,
   waterLevel: PropTypes.number,
-  setWaterLevel: PropTypes.function,
+  setWaterLevel: PropTypes.func.isRequired,
 };
 
 export default WaterButtons;

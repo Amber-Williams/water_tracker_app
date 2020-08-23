@@ -63,6 +63,7 @@ test("I can get a user's empty posts from today", async () => {
 });
 
 test('I can post a water level', async () => {
+  const timestamp = new Date().getTime();
   const username = 'test';
   const waterLevel = 350;
 
@@ -71,7 +72,7 @@ test('I can post a water level', async () => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ id: username, waterLevel: waterLevel }),
+    body: JSON.stringify({ id: username, date: timestamp, waterLevel: waterLevel }),
   });
 
   result = await result.json();

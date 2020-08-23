@@ -1,10 +1,10 @@
-export const createDateEntry = (username, amount, setWaterLevel) => {
+export const createDateEntry = (username, date, amount, setWaterLevel) => {
   fetch(`${process.env.SERVER_ADDRESS}/post`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ id: username, waterLevel: amount }),
+    body: JSON.stringify({ id: username, date: date, waterLevel: amount }),
   })
     .then((response) => response.json())
     .then((data) => {
@@ -16,12 +16,10 @@ export const createDateEntry = (username, amount, setWaterLevel) => {
     });
 };
 
-export const getDateEntries = async (username) => {
-  const date = new Date();
-  const now = date.getTime();
+export const getDateEntries = async (date, username) => {
   let waterLevel;
 
-  await fetch(`${process.env.SERVER_ADDRESS}/post/${username}/${now}`, {
+  await fetch(`${process.env.SERVER_ADDRESS}/post/${username}/${date}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

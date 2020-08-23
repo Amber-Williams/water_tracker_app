@@ -32,7 +32,7 @@ module.exports.get = (event, context, callback) => {
       return;
     }
 
-    // TTD move to utlities folder & test
+    // TODO: move to utlities folder & test
     let response;
 
     let dated_post = result.Item.waterEnteries.filter((entry) => {

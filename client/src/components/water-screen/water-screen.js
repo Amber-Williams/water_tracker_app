@@ -3,70 +3,42 @@ import PropTypes from 'prop-types';
 import UpdateModal from './../update-modal/update-modal';
 import WaterGraphic from './../water-graphic/water-graphic';
 import PencilSVG from './../../images/pencil.svg';
-import WaterButtons from '../water-buttons/water-buttons';
+import WaterButtons from './../water-buttons/water-buttons';
 import { createDateEntry, getDateEntries } from './../../utilities/api.helpers';
-import { DateRangePicker, SingleDatePicker } from 'react-dates';
+import DatePicker from './../date-picker/date-picker'
 import moment from 'moment';
-import 'react-dates/initialize';
 
 const WaterScreen = ({ username }) => {
   const [waterLevel, setWaterLevel] = useState(null);
   const [showUpdateModal, setShowUpdateModal] = useState(null);
-
-  // date picker ///
-  const [sdate, setSdate] = useState(moment());
-  const [edate, setEdate] = useState(null);
-  const [focusedInput, setFocusedInput] = useState(null);
-
-  const handleDatesChange = ({ startDate, endDate }) => {
-    console.log(startDate, endDate)
-    setSdate(startDate);
-    setEdate(endDate);
-  };
-  const handleDateChange = (date) => {
-    console.log(date)
-    setSdate(date);
-  };
-
-  // date picker ///
+  const [startDate, setStartDate] = useState(moment());
 
   useEffect(() => {
-    async function fetchDateEntries() {
-      const waterLevel = await getDateEntries(username);
-      setWaterLevel(waterLevel);
-    }
-
-    fetchDateEntries();
+    fetchDateEntries(startDate);
   }, []);
 
+  const fetchDateEntries = async (date) => {
+    const waterLevel = await getDateEntries(moment(date).valueOf(), username);
+    setWaterLevel(waterLevel);
+  }
   const handleUpdateModalSubmit = (event, waterLevel) => {
     event.preventDefault();
     waterLevel = Number(waterLevel);
-    createDateEntry(username, waterLevel, setWaterLevel);
+    createDateEntry(username, moment(startDate).valueOf(), waterLevel, setWaterLevel);
     setShowUpdateModal(false);
   };
 
   return (
     <React.Fragment>
       <div className="WaterScreen">
-      {/* See data / edit date */}
-      <DateRangePicker
-        startDate={sdate}
-        endDate={edate}
-        onDatesChange={handleDatesChange}
-        focusedInput={focusedInput}
-        onFocusChange={focusedInput => setFocusedInput(focusedInput)} />
-
-        <SingleDatePicker
-          date={sdate} // momentPropTypes.momentObj or null
-          onDateChange={handleDateChange} // PropTypes.func.isRequired
-          focused={focusedInput} // PropTypes.bool
-          onFocusChange={focusedInput => setFocusedInput(focusedInput)}// PropTypes.func.isRequired
-        />
+        <DatePicker startDate={startDate} setStartDate={setStartDate} fetchDateEntries={fetchDateEntries}/>
 
         <div className="text-color--secondary text-center">
           <h1> Welcome {username}! </h1>
-          <h3>Your water level is currenty</h3>
+          {moment(startDate).isSame(moment(), 'day')
+            ? <h3>Your water level is currenty</h3>
+            : <h3>{moment(startDate).format('DD-MM-YYYY')} - your water level was</h3>
+          }
           <h2>{waterLevel} ml</h2>
         </div>
 
@@ -79,6 +51,7 @@ const WaterScreen = ({ username }) => {
           username={username}
           waterLevel={waterLevel}
           setWaterLevel={setWaterLevel}
+          startDate={startDate}
         />
       </div>
 

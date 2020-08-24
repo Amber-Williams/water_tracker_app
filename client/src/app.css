@@ -1,4 +1,5 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'react-dates/lib/css/_datepicker.css';
 
 /**
  * variables
@@ -65,9 +66,9 @@ h3 {
  * App
  */
 #root {
-  height: 100vh;
-  width: 100vw;
   background-color: #6fbeea;
+  min-width: 100vw;
+  min-height: 100vh;
 }
 
 /**
@@ -97,6 +98,18 @@ h3 {
   background: none;
   border: none;
   float: right;
+  margin-right: 30%;
+}
+
+.WaterButtons {
+  max-width: 500px;
+  margin: 0 auto;
+  padding-bottom: 2rem;
+}
+
+.WaterButtons--MinusPlus {
+  width: 500px;
+  margin: 0 auto;
 }
 
 .WaterButtons--MinusPlus img {

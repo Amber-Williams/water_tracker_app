@@ -6,7 +6,7 @@ const dynamoDb = new AWS.DynamoDB.DocumentClient();
 module.exports.create = (event, context, callback) => {
   const timestamp = new Date().getTime();
   const data = JSON.parse(event.body);
-  if (typeof data.waterLevel !== 'number') {
+  if (typeof data.waterLevel !== 'number' || typeof data.date !== 'number') {
     const error = "Couldn't create the water post. Issue with input type.";
     console.error(`Validation Failed: ${error}`); // eslint-disable-line no-console
     callback(null, {
@@ -32,7 +32,7 @@ module.exports.create = (event, context, callback) => {
     ExpressionAttributeValues: {
       ':waterLevel': [
         {
-          date: timestamp,
+          date: data.date,
           level: data.waterLevel,
         },
       ],

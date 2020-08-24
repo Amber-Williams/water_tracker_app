@@ -1,6 +1,11 @@
-service: water-tracking-app2098234
+org: amberwilliams
+app: water-tracker-app-server
+service:  water-tracker-app-server
 
 frameworkVersion: ">=1.1.0 <2.0.0"
+
+plugins:
+  - serverless-offline
 
 package:
   include:
@@ -75,7 +80,7 @@ resources:
   Resources:
     WaterLevelDynamoDbTable:
       Type: 'AWS::DynamoDB::Table'
-      DeletionPolicy: Delete 
+      DeletionPolicy: Delete
       # DeletionPolicy: Retain  # TTD change this when in production
       Properties:
         AttributeDefinitions:

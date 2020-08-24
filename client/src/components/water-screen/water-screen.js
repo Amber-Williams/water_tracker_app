@@ -3,35 +3,42 @@ import PropTypes from 'prop-types';
 import UpdateModal from './../update-modal/update-modal';
 import WaterGraphic from './../water-graphic/water-graphic';
 import PencilSVG from './../../images/pencil.svg';
-import WaterButtons from '../water-buttons/water-buttons';
+import WaterButtons from './../water-buttons/water-buttons';
 import { createDateEntry, getDateEntries } from './../../utilities/api.helpers';
+import DatePicker from './../date-picker/date-picker'
+import moment from 'moment';
 
 const WaterScreen = ({ username }) => {
   const [waterLevel, setWaterLevel] = useState(null);
   const [showUpdateModal, setShowUpdateModal] = useState(null);
+  const [startDate, setStartDate] = useState(moment());
 
   useEffect(() => {
-    async function fetchDateEntries() {
-      const waterLevel = await getDateEntries(username);
-      setWaterLevel(waterLevel);
-    }
-
-    fetchDateEntries();
+    fetchDateEntries(startDate);
   }, []);
 
+  const fetchDateEntries = async (date) => {
+    const waterLevel = await getDateEntries(moment(date).valueOf(), username);
+    setWaterLevel(waterLevel);
+  }
   const handleUpdateModalSubmit = (event, waterLevel) => {
     event.preventDefault();
     waterLevel = Number(waterLevel);
-    createDateEntry(username, waterLevel, setWaterLevel);
+    createDateEntry(username, moment(startDate).valueOf(), waterLevel, setWaterLevel);
     setShowUpdateModal(false);
   };
 
   return (
     <React.Fragment>
       <div className="WaterScreen">
+        <DatePicker startDate={startDate} setStartDate={setStartDate} fetchDateEntries={fetchDateEntries}/>
+
         <div className="text-color--secondary text-center">
           <h1> Welcome {username}! </h1>
-          <h3>Your water level is currenty</h3>
+          {moment(startDate).isSame(moment(), 'day')
+            ? <h3>Your water level is currenty</h3>
+            : <h3>{moment(startDate).format('DD-MM-YYYY')} - your water level was</h3>
+          }
           <h2>{waterLevel} ml</h2>
         </div>
 
@@ -44,6 +51,7 @@ const WaterScreen = ({ username }) => {
           username={username}
           waterLevel={waterLevel}
           setWaterLevel={setWaterLevel}
+          startDate={startDate}
         />
       </div>
 
@@ -53,6 +61,8 @@ const WaterScreen = ({ username }) => {
           handleUpdateModalSubmit={handleUpdateModalSubmit}
         />
       ) : null}
+
+
     </React.Fragment>
   );
 };

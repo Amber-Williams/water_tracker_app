@@ -4,7 +4,7 @@ A web application that helps you keep track of how much water you drank per day.
 
 ## Setting up the API server
 
-1. At the root folder in your terminal run `npm intall` to install the node modules
+1. At the root folder in your terminal run `npm install` to install the node modules
 
 2. Run `cd server` to go into the server directory then run the below with your AWS key information in your terminal
    `export AWS_ACCESS_KEY_ID=XXXXXXXXXXXXXXX`
@@ -58,4 +58,3 @@ Nice to haves would be:
 * Better date formatting so a person can look at the database and understand what date/time it is
 * Animations
 * And more
-\

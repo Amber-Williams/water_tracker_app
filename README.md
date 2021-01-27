@@ -1,6 +1,6 @@
 # water_tracker_app
 
-A web application that helps you keep track of how much water you drank per day.
+A web application that helps you keep track of how much water you drank per day. App can be viewed <b>[here](http://website-fpe0zhk.s3-website.us-east-1.amazonaws.com/)</b>
 
 ## Setting up the API server
 
@@ -45,7 +45,7 @@ A web application that helps you keep track of how much water you drank per day.
 
 
 ### About the application
-App can be viewed [here](http://website-fpe0zhk.s3-website.us-east-1.amazonaws.com/)
+App can be viewed <b>[here](http://website-fpe0zhk.s3-website.us-east-1.amazonaws.com/)</b>
 This app is made to track daily intakes of water and was built to work with a date selector in mind. The app was created with a client side and server side microservices that are easy to deploy via serverless files.
 
 Testing was created to run on the API endpoint, which is meant to run on a test database *not* the real one.
